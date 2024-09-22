@@ -14,6 +14,22 @@ const destDir = `${previewDestDir}/_`
 const { reload: livereload } = process.env.LIVERELOAD === 'true' ? require('gulp-connect') : {}
 const serverConfig = { host: '0.0.0.0', port: 5252, livereload }
 
+const gulp = require('gulp');
+var argv = require('yargs').argv;
+const s3 = require('gulp-s3-upload')({
+    accessKeyId: argv.awsAccessKeyId,
+    secretAccessKey: 'argv.awsSecretAccessKey,
+    region: 'eu-west-1'
+});
+
+gulp.task('uploadToS3', function() {
+    return gulp.src('build/ui-bundle.zip')
+        .pipe(s3({
+            Bucket: 'mimmo-site'
+        }));
+});
+
+
 const task = require('./gulp.d/tasks')
 const glob = {
   all: [srcDir, previewSrcDir],
