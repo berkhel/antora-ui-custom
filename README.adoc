@@ -1,4 +1,5 @@
-= Antora Default UI
+= Antora Custom UI
+Forked from Antora Default UI (https://gitlab.com/antora-ui-custom/antora-ui-default.git)
 // Settings:
 :experimental:
 :hide-uri-scheme:
