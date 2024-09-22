@@ -1,5 +1,5 @@
 = Antora Custom UI
-Forked from Antora Default UI (https://gitlab.com/antora-ui-custom/antora-ui-default.git)
+
 // Settings:
 :experimental:
 :hide-uri-scheme:
@@ -19,6 +19,8 @@ Forked from Antora Default UI (https://gitlab.com/antora-ui-custom/antora-ui-def
 :url-nvm: https://github.com/creationix/nvm
 :url-nvm-install: {url-nvm}#installation
 :url-source-maps: https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map
+
+Forked from Antora Default UI (https://gitlab.com/antora-ui-custom/antora-ui-default.git)
 
 image:{img-ci-status}[CI Status (GitLab CI), link={url-ci-pipelines}]
 
