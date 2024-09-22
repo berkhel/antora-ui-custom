@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Cache NPM
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: .cache/npm
           key: ${{ runner.os }}-npm-cache
@@ -25,9 +25,9 @@ jobs:
     needs: setup
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Cache NPM
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: .cache/npm
           key: ${{ runner.os }}-npm-cache
@@ -44,9 +44,9 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.repository == 'berkhel/antora-ui-custom'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Cache NPM
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: .cache/npm
           key: ${{ runner.os }}-npm-cache
@@ -57,7 +57,7 @@ jobs:
       - name: Bundle stable
         run: node_modules/.bin/gulp bundle
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ui-bundle
           path: build/ui-bundle.zip
@@ -68,9 +68,9 @@ jobs:
     if: github.ref != 'refs/heads/master'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Cache NPM
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: .cache/npm
           key: ${{ runner.os }}-npm-cache
@@ -81,7 +81,7 @@ jobs:
       - name: Bundle dev
         run: node_modules/.bin/gulp bundle
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ui-bundle
           path: build/ui-bundle.zip
@@ -93,9 +93,9 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.repository == 'berkhel/antora-ui-custom'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Cache NPM
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: .cache/npm
           key: ${{ runner.os }}-npm-cache
@@ -108,7 +108,7 @@ jobs:
       - name: Remove unnecessary files
         run: rm -rf public/_/{helpers,layouts,partials}
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: public
           path: public
