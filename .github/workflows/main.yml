@@ -43,3 +43,10 @@ jobs:
         with:
           name: ui-bundle
           path: build/ui-bundle.zip
+    
+  publish:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.repository == 'berkhel/antora-ui-custom'
+    steps:
+      - name: Publish on S3
+        run: node_modules/.bin/gulp uploadToS3 --awsAccessKeyId ${{ secrets.AWS_ACCESS_KEY_ID }} --awsSecretAccessKey ${{ secrets.AWS_SECRET_ACCESS_KEY }}
