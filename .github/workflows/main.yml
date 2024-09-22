@@ -28,3 +28,4 @@ jobs:
           path: build/ui-bundle.zip
       - name: Publish on S3
         run: node_modules/.bin/gulp uploadToS3 --awsAccessKeyId ${{ secrets.AWS_ACCESS_KEY_ID }} --awsSecretAccessKey ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
