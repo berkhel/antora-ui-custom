@@ -20,27 +20,9 @@ jobs:
       - name: Install dependencies
         run: npm install --quiet --no-progress --cache=.cache/npm
 
-  verify:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Cache NPM
-        uses: actions/cache@v3
-        with:
-          path: .cache/npm
-          key: ${{ runner.os }}-npm-cache
-          restore-keys: |
-            ${{ runner.os }}-npm-cache
-      - name: Install dependencies
-        run: npm install --quiet --no-progress --cache=.cache/npm
-      - name: Lint code
-        run: node_modules/.bin/gulp lint
 
-  deploy-stable:
+  deploy:
     runs-on: ubuntu-latest
-    needs: verify
     if: github.ref == 'refs/heads/main' && github.repository == 'berkhel/antora-ui-custom'
     steps:
       - name: Checkout code
@@ -61,54 +43,3 @@ jobs:
         with:
           name: ui-bundle
           path: build/ui-bundle.zip
-
-  deploy-dev:
-    runs-on: ubuntu-latest
-    needs: verify
-    if: github.ref != 'refs/heads/master'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Cache NPM
-        uses: actions/cache@v3
-        with:
-          path: .cache/npm
-          key: ${{ runner.os }}-npm-cache
-          restore-keys: |
-            ${{ runner.os }}-npm-cache
-      - name: Install dependencies
-        run: npm install --quiet --no-progress --cache=.cache/npm
-      - name: Bundle dev
-        run: node_modules/.bin/gulp bundle
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ui-bundle
-          path: build/ui-bundle.zip
-          retention-days: 1
-
-  pages:
-    runs-on: ubuntu-latest
-    needs: verify
-    if: github.ref == 'refs/heads/main' && github.repository == 'berkhel/antora-ui-custom'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Cache NPM
-        uses: actions/cache@v3
-        with:
-          path: .cache/npm
-          key: ${{ runner.os }}-npm-cache
-          restore-keys: |
-            ${{ runner.os }}-npm-cache
-      - name: Install dependencies
-        run: npm install --quiet --no-progress --cache=.cache/npm
-      - name: Build preview
-        run: node_modules/.bin/gulp preview:build
-      - name: Remove unnecessary files
-        run: rm -rf public/_/{helpers,layouts,partials}
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: public
-          path: public
