@@ -18,7 +18,7 @@ const gulp = require('gulp');
 var argv = require('yargs').argv;
 const s3 = require('gulp-s3-upload')({
     accessKeyId: argv.awsAccessKeyId,
-    secretAccessKey: 'argv.awsSecretAccessKey,
+    secretAccessKey: argv.awsSecretAccessKey,
     region: 'eu-west-1'
 });
 
