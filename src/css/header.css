@@ -53,11 +53,15 @@ body {
   justify-content: center;
 }
 
+#search-field {
+  width: 50%;
+}
+
 #search-input {
   color: #333;
   font-family: inherit;
   font-size: 0.95rem;
-  width: 150px;
+  width: 100%;
   border: 1px solid #dbdbdb;
   border-radius: 0.1em;
   line-height: 1.5;
